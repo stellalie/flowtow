@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>FlowTow Requirements</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="/static/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="/static/style.css" rel="stylesheet">
+
+    <!-- Just for debugging purposes. Don't actually copy this line! -->
+    <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+
+  <body>
+
+    <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">FlowTow</a>
+        </div>
+        <div class="collapse navbar-collapse">
+          <ul class="nav navbar-nav">
+            <li><a href="/">Home</a></li>
+            <li><a href="/about/">About</a></li>
+            <li><a href="/static/assignment.html">Assignment Spec</a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </div>
+    
+    <div class="container">
+
+<h1>COMP249 Assignment: FlowTow Web Application</h1>
+
+<p>The major programming assignment for COMP249 this year is to build a
+web application that supports posting digital images and commenting on them. 
+There are many such sites around the web including <a href="http://imgur.com/">Imgur</a>
+and <a href="http://instagram.com/">Instagram</a> but ours is going to be
+different, ours is going to take the world by storm and make us rich beyond
+our wildest dreams. It will be called <em>FlowTow</em> and
+we're going to build it ourselves!</p>
+
+<p>To give you an idea of what the application does, there is a demonstration
+version at <a href="http://comp249.stevecassidy.net/">http://comp249.stevecassidy.net/</a>.
+In the first instance, this demo implements the requirements for the first two
+levels of the requirements. It will be upgraded in a week or so to meet the
+level 4 requirements.</p>
+
+<p>Since this is your first significant web application, we've cut down the
+features a bit to make it manageable.  However we maintain the core of the
+application and what you write could be extended to something like a real
+product.  Your application will support logging in users, posting images, 
+making comments and viewing images in various ways. We don't require you
+to be able to register new users or allow rating of images or any 
+other social networking features.</p>
+
+<p>You are given a 'starter kit' which contains the bare outline of the
+application.  From this starting point, you will implement the full site
+in phases according to a detailed set of functional requirements.  At the end
+of each phase, a set of automated tests will be used to see if you have
+met the criteria for that phase.  Some of the marks for this assignment
+will be based on your passing these automated tests.</p>
+
+<p>While this task may seem quite daunting, it should be achievable if you
+work through the examples we have provided and work on the problem
+bit by bit.  We have run similar tasks in the past in COMP249 and most
+students have succeeded in getting a working system going.</p>
+
+<p>Note that you must pass this assignment to pass the unit; we believe
+that being able to write a complete web application should be a minimum
+standard for a student to pass COMP249 Web Applications.  Having said this,
+if you don't manage to pass on the first attempt, we'll provide whatever
+support you need to help you through.  The criteria for passing the
+assignment are laid out below.</p>
+
+<h2>Level 1</h2>
+
+<p>The requirements for this level will give us a basic website that has
+two pages (Home and About) showing some images and using a stylesheet.  The 
+pages will include some form elements for posting comments but the forms won't 
+do anything as yet.</p>
+
+<p><a href="level1.html">Requirements</a></p>
+
+
+<h2>Level 2</h2>
+
+<p>Once you have the basic web application working, the next stage is to add
+the real database backend and support submission of comments on images.</p>
+
+<p><a href="level2.html">Requirements</a></p>
+
+<h2>Level 3</h2>
+
+<p>The next phase of development adds the ability to login to the application
+and see a page of your own images.   <strong>If you complete this level successfully
+you will achieve at least a pass grade for the assignment.</strong></p>
+
+<p><a>Requirements (To be confirmed)</a></p>
+
+
+<h2>Level 4</h2>
+
+<p>This phase adds image file upload to the application.  This is the last level 
+where we provide the full requirements and tests.</p>
+
+<p><a>Requirements (To be confirmed)</a></p>
+
+
+<h2>Level 5</h2>
+
+<p>The final phase of development is more open ended.  You are free to add new features
+to the application as you see fit.  In doing so you should try to follow the 
+same development process and properly document the functional and unit 
+tests that will give you assurance that you have acheived your desired
+functionality.  Functional tests can be optionally implemented using 
+Selenium but should at least be expressed as a user story ('As a user, when I...').</p>
+
+<p>Note that any features that you add at this level <strong>must not cause earlier tests
+to fail</strong>. This means you can't change the way that comments are posted etc. but you
+can add some new user input option or new page with a different display.</p>
+
+<h2>Starter Kit</h2>
+
+<p>The starter kit is a zip file containing an Eclipse project with a set of Python
+files to get you started on this project. These files provide a framework for you
+to work within, you will need to add more code of your own and possibly more
+modules (python files) to complete the implementation.</p>
+
+<p>You can download the starter pack here: <a href="flowtow-starter-kit.zip">flowtow-starter-kit.zip</a></p>
+
+<p>The contents of the starter pack are as follows:</p>
+
+<ul>
+ <li><code>templating.py</code> - python page templating module</li>
+ <li><code>main.py</code> - main WSGI script with a simple example</li>
+ <li><code>mock.py</code> - mock database interface for Level 1</li>
+ <li><code>level1_functional.py</code> - functional tests for Level 1</li>
+ <li><code>level1_unit.py</code> - unit tests for Level 1</li>
+ <li><code>level2_functional.py</code> - functional tests for Level 2</li>
+ <li><code>level2_unit.py</code> - unit tests for Level 2</li>
+ <li><code>static</code> - directory containing sample images and a copy of these pages</li>
+</ul>
+
+<p>To get started with this project, if you are using Eclipse, choose "Import..." from the
+File menu and select "Existing Projects into Workspace", in the next dialogue box select
+Archive file and locate the zip file you downloaded.  You should then be able to
+proceed and the project should be established in your workspace.</p>
+
+<p>The code as provided includes a sample WSGI
+application which you can run.  It doesn't do much other than generate a static page that
+links to a copy of these notes.   This is your starting point for development and
+you should write your code so that <code>main.py</code>  is the main application (when
+I run your code, this is what I'll look for).</p>
+
+<p>You can run the 
+unit tests (<code>level1_unit.py</code> <code>level2_unit.py</code>) to check that
+you have met the requirements at each level. To do this,
+open the file in Eclipse and click 'Run', choose to run as "Python unit-test".
+The Level 1 unit tests should all pass without any additional work; the Level 2
+tests require you to implement the <code>interface.py</code> module.
+</p>
+
+<p>The functional tests (<code>level1_functional.py</code> or <code>level2_functiona.py</code>)  use the 
+<a href="http://selenium-python.readthedocs.org/en/latest/installation.html" >Python Selenium</a>
+module to start up a web browser (Firefox) and access your pages.  To run the functional
+tests you need to have the main application (<code>main.py</code>) running as well.  As provided, all 
+the tests will fail, your job is to make them pass.</p>
+
+<p>Note that if you follow the written requirements set out in the pages linked above, you
+should pass the functional tests.  A reasonable way to work would be to read and implement
+each functional requirement in turn and then run the functional tests when you are done as 
+a check.</p>
+
+<p>The starter pack only contains the Level 1 and Level 2 tests and provided code. More tests and 
+new modules will be provided later for the other levels.</p>
+
+<h2>Submission</h2>
+
+<p>You will submit this work in two parts: after you have completed Level 2, and after you
+have completed Level 3 or above.  The Level 2 submission is intended to check on your progress
+with the assignment so that we can provide you with feedback and identify anyone
+who needs support.   See iLearn for the dates of these submissions.</p>
+
+<p>For each submission you should submit a zip file
+with the same structure as the starter pack. We will expect to run <code>main.py</code>
+to see your application. Include any support files that you need for your application
+to work.  A good idea would be to unpack your zip file at a new location and try to
+run it yourself.</p>
+
+<p>It is important that you pass this assignment - the criteria are set out below. If you don't
+pass at your first attempt, you
+may re-submit after getting feedback on your work.  This is not an excuse to leave the
+work until later, if you haven't made an honest effort at completing the work you won't be
+given a chance to re-submit.  So, do the best you can and submit by the deadline; we will
+provide support if you are having difficulty and will advise you about resubmission.</p>
+
+<h2>Grading and Passing the Assignment</h2>
+
+  <p>This assignment is worth 15% of the final marks for COMP249.  The marks for the 
+  	first four levels will be out of 10 and will be entirely based on achieving the stated functional
+  	and unit-test requirements and passing the automated tests. 
+  	The remaining 5 marks will be based on your completion of additional work
+  	for Level 5 and on the quality of the code and documentation that you
+  	provide.   	 The breakdown
+  	of marks for the first four levels is as follows:</p>
+	
+ 
+  <table class='table'>
+  	<thead>
+  		<tr><th>Level</th><th>Functional Tests</th><th>Unit Tests</th><th>Cumulative Marks</th></tr>
+  	</thead>
+  	<tbody>
+  		<tr><th>1</th><td>1</td><td>0</td><td>1</td></tr>
+  		<tr><th>2</th><td>1</td><td>1</td><td>4</td></tr>
+  		<tr class='active'><th>3 (Pass)</th><td>2</td><td>2</td><td>8</td></tr>
+  		<tr><th>4</th><td>1</td><td>1</td><td>10</td></tr>
+  	</tbody>
+  </table>
+
+
+  <p>Note that to pass this unit, you must pass this assignment. <strong>To
+   pass the assignment you must meet all of the requirements for
+   the first three levels.</strong>  This means that if you are able to
+   pass all of the automated tests for these levels, you will get a 
+   mark of 8 or more and pass the assignment. </p>
+
+  <p>If you are not able to pass the first time you submit your work, you may
+   resubmit after getting some advice from Steve Cassidy.  <strong>However, you
+   must submit on time to be eligible for re-submission.</strong></p>
+
+   <p>Marking criteria for Level 5 will decide whether you get a Credit
+   	or Distinction/High Distinction for the assignment.  The criteria are: </p>
+
+   <dl>
+    <dt>Features</dt>
+    <dd>The extra features that you have implemented in the project. For
+    a Credit you don't need to add any extra features, for D/HD you will have
+    added at least one new feature that is well integrated into the 
+    application and is well thought out.</dd>
+
+   <dt>Code Quality</dt>
+   <dd> Your code is
+   readable and well structured. For a Credit, we should not have
+   any trouble working out how you implemented a given feature. For a
+   D/HD, you will have thought hard about how the application as
+   a whole fits together and made good use of modules.</dd>
+
+   <dt> Documentation</dt>
+   <dd>
+   You have provided appropriate documentation. For a Credit, you
+   will have used documentation strings and in-line comments where
+   appropriate in your code. For D/HD, you will have provided documentation of
+   your application that would be useful to a future developer, your 
+   documentation will include
+   functional tests in the form of user stories for your new features.</dd>
+
+  </dl>
+
+   <p>Your final grade will be calculated
+   based on your performance against the above criteria. It is not
+   necessary to get a distinction against all criteria to get full marks
+   for the assignment.</p>
+
+ </div>
+</div>
+    <footer class='footer'>
+    <hr>
+      <div class='container'>
+        <p>FlowTow is a class project for COMP249 at Macquarie University</p>
+        <p>FlowTow uses <a href="http://twitter.github.com/bootstrap/index.html">Twitter Bootstrap</a></p>
+        <p>Copyright &copy; <a href="http://web.science.mq.edu.au/~cassidy/">Steve Cassidy</a>, 2014</p>
+      </div>
+    </footer>
+    </div>
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script src="/static/bootstrap/js/bootstrap.min.js"></script>
+  </body>
+</html>

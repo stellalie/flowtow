@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>FlowTow Requirements: Level 1</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="/static/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="/static/style.css" rel="stylesheet">
+
+    <!-- Just for debugging purposes. Don't actually copy this line! -->
+    <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+
+  <body>
+
+    <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">FlowTow</a>
+        </div>
+        <div class="collapse navbar-collapse">
+          <ul class="nav navbar-nav">
+            <li><a href="/">Home</a></li>
+            <li><a href="/about/">About</a></li>
+            <li><a href="/static/assignment.html">Assignment Spec</a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </div>
+
+    <div class="container">
+ 
+	<h1>Level 1</h1>
+     <h2>Functional requirements</h2>
+	  
+ <ol>
+	<li>As a visitor to the site, when I load the home page I see the title text <em>"Welcome to FlowTow"</em>.</li>
+
+	<li>As a visitor to the site, when I load the home page I see three images displayed, each
+	labelled with a date, a user name and the comments on the image.
+
+    <p class='bg-info'>The list of images and comments will be generated from the return value of
+    the mock database interface procedure <code>mock.list_images</code>.</p>
+
+	<p class='bg-info'>Each image will be contained in a &lt;div&gt; with class 'flowtow', that div will
+	contain the date, username and comments.</p>
+	</li>
+
+	<li>As a visitor to the site, when I load the home page I see a comment form below each
+image with the placeholder text <em>"Enter your comment here"</em> and a button labelled <em>"Submit"</em></li>
+
+	<li>As a visitor to the site, when I load the home page I see a link to another page
+with the link text <em>"About"</em>.</li>
+
+	<li>As a visitor to the site, when I click on the link <em>"About"</em> I am taken to 
+a page that contains the site manifesto, including the words <em>"FlowTow is a new, exciting, 
+photo sharing service like nothing you've seen before!"</em></li>
+
+	<li>As a visitor to the site, I notice that all the pages on the site have the same
+design with the same colours and fonts used throughout.
+	<p class='bg-info'>Each page will have a similar structure and will link to a 
+	common CSS stylesheet.</p></li>
+ 
+</ol>
+
+<h2>Unit Tests</h2>
+
+    <p>A set of unit tests is provided for Level 1 to test the mock database and templating
+    modules that have been provided for you. All tests should pass.</p>
+
+    <ol>
+    <li>
+There is a procedure 'list_images' that takes a single argument 'n' and returns a list of 
+the most recent 'n' images that have been uploaded along with their details.  The return
+value will be a list of tuples with one tuple per image, each tuple will contain four
+elements: (filename, date, useremail, comments).  'filename' is the path to the image relative to 
+the default image directory, 'date' is a date string, 'useremail' is the id of the owner
+of the image and 'comments' is a list of comment strings for this image.
+        
+    </li>
+    
+    <li>There is a procedure 'render_from_string' in the 'templating' module that 
+        takes a template string and a dictionary as input and returns a value
+        suitable for returning from a WSGI procedure containing the dictionary values 
+        substituted into the template string.</li>
+     <li>There is a procedure 'render' in the 'templating' module that behaves
+         like 'render_from_string' but reads the template from a file in
+         the 'templates' subdirectory.</li>
+    </ol>
+
+<h2>Your Task</h2>
+
+	<p>To achieve these requirements you will need to build a WSGI web application that
+		is able to serve the two HTML pages (Home and About) and the associated 
+		stylesheet and images.  The techniques to do this are covered here:</p>
+
+	<ul>
+		<li><a href="http://pwp.stevecassidy.net/wsgi/more-wsgi.html#title0">Serving More Pages</a>
+			 shows how to write a single application that responds to different URLs using the 
+			 <code>PATH_INFO</code> value in the WSGI environment. </li>
+		<li><a href="http://pwp.stevecassidy.net/wsgi/static.html">Serving Static Files</a>
+			shows how to write a WSGI application to serve static files like CSS stylesheets
+			or images.</li>
+	</ul>
+
+
+	<p>The Starter Kit includes a module for page templating that is <a href="modules.html#template">described here</a>. </p>
+	
+
+
+
+    <footer class='footer'>
+    <hr>
+      <div class='container'>
+        <p>FlowTow is a class project for COMP249 at Macquarie University</p>
+        <p>FlowTow uses <a href="http://twitter.github.com/bootstrap/index.html">Twitter Bootstrap</a></p>
+        <p>Copyright &copy; <a href="http://web.science.mq.edu.au/~cassidy/">Steve Cassidy</a>, 2014</p>
+      </div>
+    </footer>
+    </div>
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script src="/static/bootstrap/js/bootstrap.min.js"></script>
+  </body>
+</html>

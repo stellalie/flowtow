@@ -1,0 +1,5 @@
+.idea/*
+*.pyc
+resources/node_modules/*
+resources/css/*
+db/*.sqlite3

@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>FlowTow Requirements: Level 1</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="/static/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="/static/style.css" rel="stylesheet">
+
+    <!-- Just for debugging purposes. Don't actually copy this line! -->
+    <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+
+  <body>
+
+    <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">FlowTow</a>
+        </div>
+        <div class="collapse navbar-collapse">
+          <ul class="nav navbar-nav">
+            <li><a href="/">Home</a></li>
+            <li><a href="/about/">About</a></li>
+            <li><a href="/static/assignment.html">Assignment Spec</a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </div>
+
+    <div class="container">
+ 
+	<h1>Level 2</h1>
+	 <h2>Functional requirements</h2>
+	  
+<p>As for level one plus:</p>
+
+	<ol>
+	<li>As a visitor to the site, when I enter a comment into the text box below an image and press
+the "Submit" button, the page returned has the text of my comment below the same
+image.
+
+    <p class='bg-info'>The comment form will use a field named <code>comment</code> to hold the comment text.  Any
+    other fields required can have any name you wish.</p>
+    
+	<p class='bg-info'>The response to the form submission will be a redirect (303 See Other) response back to the 
+	home page.  When that page is then requested by the browser (interpreting the redirect), the new comment will appear
+	along with the appropriate image.</p>
+
+</li>
+		<li>As a visitor to the site, when I enter a comment that contains some HTML markup,
+			the comment appears on the page with the HTML markup in quoted form.
+			
+			<p class='bg-info'>This prevents code injection attacks on the site. Any occurence of &lt;, &gt; or &amp; should
+				be replaced by &amp;lt;, &amp;gt; or &amp;amp;.</p>
+			</li>
+	</ol>
+
+	<h2>Unit Tests</h2>
+
+<p>This level adds an SQLite database to the implementation.  All procedures will be implemented in
+    the module <code>interface.py</code>, a version has been supplied that contains the procedure
+    stubs only.</p>
+
+
+<ol>
+	<li>There is a procedure <code>list_comments</code> that takes two arguments, a database 
+		connection and the 
+	name of an image and returns a list of the comments stored for that image.</li>
+	
+	<li>There is a procedure <code>add_comment</code> that takes three arguments, a database connection, 
+		the name of an
+	image and a comment as a string. The comment is stored in the database associated
+	with this image. </li>
+	
+	<li>There is a procedure <code>list_images</code> that takes a two arguments, a database connection and
+		a number  <code>n</code> and returns a list of 
+	the most recent <code>n</code> images that have been uploaded along with their details.  The return
+	value will be a list of tuples with one tuple per image, each tuple will contain four
+	elements: <code>(filename, date, useremail, comments)</code>.  <code>filename</code> is the path to the image relative to 
+	the default image directory, <code>date</code> is a date string in the format YYYY-MM-DD,
+	<code>useremail</code> is the email
+	address of the owner
+	of the image and <code>comments</code> is a list of comment strings for this image.
+	The images will be returned in reverse order of their date, with the newest image first.</li>
+	
+	<li>There is a procedure <code>add_image</code> which takes three arguments, a database connection and
+		the name of an image
+	file and the email address of the owner of the image.  The image name is stored
+	in the database along with the owner id and the current date.   
+	</li>
+ </ol>
+ 
+	<p>The Starter Kit includes modules for page templating and creating and interfacing to
+		the database. These modules are <a href="modules.html">described here</a>. </p>
+	
+
+<h2>Your Task</h2>
+
+
+	<p>To achieve these requirements you will need to extend your WSGI application to 
+	interface to the SQLite database and write code to pass the unit tests for the 
+	database interface. The techniques to do this are covered here:</p>
+
+	<ul>
+	    <li><a href="http://pwp.stevecassidy.net/wsgi/more-wsgi.html#title2">More on WSGI</a> describes handling form input in a WSGI script.</li>
+		<li><a href="http://pwp.stevecassidy.net/pythoncgi/pysqlite.html">Python and SQLite</a> describes the
+			way to send queries to SQLite and get results back.</li>
+		<li><a href="http://pwp.stevecassidy.net/wsgi/wsgi-sqlite.html">WSGI and SQLite</a> looks at using
+			SQLite databases as part of a WSGI appliication.</li>
+		<li><a href="http://pwp.stevecassidy.net/python/unittest.html">Testing Python Programs</a> covers
+			running unit tests.</li>
+	</ul>
+
+
+
+
+    <footer class='footer'>
+    <hr>
+      <div class='container'>
+        <p>FlowTow is a class project for COMP249 at Macquarie University</p>
+        <p>FlowTow uses <a href="http://twitter.github.com/bootstrap/index.html">Twitter Bootstrap</a></p>
+        <p>Copyright &copy; <a href="http://web.science.mq.edu.au/~cassidy/">Steve Cassidy</a>, 2014</p>
+      </div>
+    </footer>
+    </div>
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script src="/static/bootstrap/js/bootstrap.min.js"></script>
+  </body>
+</html>

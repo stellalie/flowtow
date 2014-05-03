@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>FlowTow Requirements: Level 1</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="/static/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="/static/style.css" rel="stylesheet">
+
+    <!-- Just for debugging purposes. Don't actually copy this line! -->
+    <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+
+  <body>
+
+    <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">FlowTow</a>
+        </div>
+        <div class="collapse navbar-collapse">
+          <ul class="nav navbar-nav">
+            <li><a href="/">Home</a></li>
+            <li><a href="/about/">About</a></li>
+            <li><a href="/static/assignment.html">Assignment Spec</a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </div>
+
+    <div class="container">
+
+ <h1>Python Modules</h1>
+
+ <p>This document describes the SQL database that you will be using and a number of
+ Python modules that we have supplied.  In one case, <code>interface.py</code> you
+ need to complete the implementation yourself.</p>
+
+<h2>The Database</h2>
+
+ <p>The database used by the application consists of three simple
+ tables: users, sessions and comments.  These are defined by the
+ following SQL:</p>
+
+ <pre class='code'>
+DROP TABLE IF EXISTS users;
+CREATE TABLE users (
+           email text unique primary key,
+           password text,
+           nick text,
+           avatar text
+);
+
+DROP TABLE IF EXISTS sessions;
+CREATE TABLE sessions (
+            sessionid text unique primary key,
+            useremail text,
+            FOREIGN KEY(useremail) REFERENCES users(email)
+);
+
+DROP TABLE IF EXISTS images;
+CREATE TABLE images (
+            filename text unique primary key,
+            date text,
+            useremail text,
+            FOREIGN KEY(useremail) REFERENCES users(email)
+);
+
+DROP TABLE IF EXISTS comments;
+CREATE TABLE comments (
+            filename text,
+            comment text,
+            FOREIGN KEY(filename) REFERENCES images(filename)
+); </pre>
+
+<p>The users table will contain records for each user, they are identified by
+an email address which is the primary key for the table and we also store a nick (short name)
+and an avatar for each user.  The password field stores an encrypted version of the
+password (a web application should never store a password in plain text in case the
+database is compromised).  The encryption method used is provided as the <code>crypt</code> method of
+the COMP249Db class (see below).</p>
+
+<p>The sessions table is used to store session keys generated for users when they
+login to the web application.  The <code>useremail</code> field is a foreign key that
+references the email field in the users table.</p>
+
+<p>The images table stores the images that have been uploaded - or rather it stores the
+	names of the image files that have been uplaoded. The images themselves will be stored
+	on the filesystem.  Along with each image is a date field recording the day that the
+	image was uploaded and a useremail field recording who uploaded the image.</p>
+
+<p>The comments table stores the comments on images, the <code>filename</code> field references
+	the same field in the images table. </p>
+
+<h2>The <tt>database.py</tt> Module</h2>
+
+ <p><strong>Note that you should not modify this module when writing
+ your application. It is important that you are using the same database
+ schema so that the unit tests will work. If you want to include new
+ database interface code, put it in another module.</strong></p>
+
+ <p>
+  This module contains an interface to the SQLite3 database module that
+  takes care of some of the details for you.  It is similar to the one
+  used in the videos that make use of databases in WSGI applications.
+  The module contains a single class definition (
+  <code>COMP249Db</code>
+  ) which implements a connection to the database. The class contains a
+  method to create the tables in the database and another to populate
+  the database with sample data that you can use for development. To
+  initialise the database at the start of your application you can
+  write:
+ </p>
+ <pre class="code">    import database
+
+    db = database.COMP249Db()
+    db.create_tables()
+    db.sample_data()
+    </pre>
+
+<p>In the starter pack code that we've provided, this is done when you
+run the <code>main.py</code> module in the main block at the end of the file.
+This means that each time you run this module, you'll get a new database
+with fresh randomised data.</p>
+
+<p>In your application code, you will want to create a connection to
+the database that you can use to access data.  The best option is to
+create the connection in the WSGI application procedure and pass it
+in to any procedures that you use.  The <code>interface.py</code>
+procedures already follow this pattern.  If you have more than one
+WSGI application procedure, then you can create a database connection
+in each one by calling <code>database.COMP249Db()</code>.  Don't
+call <code>create_tables</code> or <code>sample_data</code> otherwise
+your database will be reset on each request.</p>
+
+ <p>
+  All of the procedures in <code>interface.py</code> have a database
+  connection passed in as the first argument.   Inside the procedure you
+  can use the
+  <code>cursor</code>
+  method to generate a cursor:
+ </p>
+
+ <pre class="code">def list_images(db, n):
+    """Return a list of tuples for the first 'n' images in 
+    order of date.  Tuples should contain (filename, date, useremail, comments)."""
+
+    cursor = db.cursor()
+    cursor.execute('SELECT something  FROM somewhere')
+    </pre>
+
+ <p>Similarly you can commit changes to the database with the commit
+  method:</p>
+
+ <pre class="code">
+    cursor = db.cursor()
+    cursor.execute('DELETE FROM users')
+    db.commit()
+    </pre>
+
+ <p>
+  The COMP249Db class also provides a utility method
+  <code>crypt</code>
+  that can be used to encode a password or generate a unique identifier
+  for a user's session cookie.
+  <code>crypt</code>
+  uses the
+  <code>hashlib.sha1</code>
+  module to generate a one way hash of the string given to it. This hash
+  will always be the same given the same input, so can be used to encode
+  a password for storing in the database. When you get a password from
+  the user, you first encode it with the
+  <code>crypt</code>
+  method, and then compare it with the database. Here's an example:
+ </p>
+ <pre class="code">    storedpw = get the password from the database
+    password = get the password from the user request (form)
+    if storedpw == db.crypt(password)
+       # they match
+    else:
+       # they don't match
+    </pre>
+ <p>
+  Similarly, the
+  <code>crypt</code>
+  method can be used to generate a suitable session id by encoding the
+  user email. This will always be the same for each user which is
+  appropriate for this application.
+ </p>
+
+ <h2>The <tt>interface.py</tt> Module</h2>
+
+  <p>You will write the procedures in this module to pass the tests in level2_unit.py.  The procedure
+  definition lines and documentation strings have been entered for you. You need to write the body
+  of the procedures to make the tests pass.</p>
+
+
+ <h2 id='template'>The <tt>templating.py</tt> Module</h2>
+
+<p>This module contains the definition of a simple templating engine as described
+	in the <a href="http://pwp.stevecassidy.net/wsgi/templating.html">online python notes</a>.
+	A sample template is included in the <code>templates</code> subdirectory and is used
+	by the sample WSGI procedure in <code>main.py</code>.</p>
+
+</div>
+    <footer class='footer'>
+    <hr>
+      <div class='container'>
+        <p>Commentr is a class project for COMP249 at Macquarie University</p>
+        <p>Commentr uses <a href="http://twitter.github.com/bootstrap/index.html">Twitter Bootstrap</a></p>
+        <p>Copyright &copy; <a href="http://web.science.mq.edu.au/~cassidy/">Steve Cassidy</a>, 2013</p>
+      </div>
+    </footer>
+    </div>
+    <script src="http://code.jquery.com/jquery.js"></script>
+    <script src="bootstrap/js/bootstrap.min.js"></script>
+
+</body>
+</html>

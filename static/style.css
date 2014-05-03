@@ -1,0 +1,29 @@
+body {
+  padding-top: 50px;
+  background-image: url(/static/DRAFT.png);
+}
+h1 {
+	text-align: center;
+}
+.flowtow {
+	margin-left: auto;
+	margin-right: auto;
+	margin-bottom: 10px;
+	width: 520px;
+	border: 1px solid black;
+	padding: 12px;
+	background-color: #ffffff;
+}
+
+.flowtow img {
+	margin: 12px;
+	border: 5px solid black;
+}
+.flowtow .date {
+	display: inline-block;
+	float: left;
+}
+.flowtow .name {
+	display: inline-block;
+	float: right;
+}
