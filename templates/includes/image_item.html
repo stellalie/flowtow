@@ -1,0 +1,18 @@
+<div class="flowtow image_item">
+    <div class="top_info">
+        <div class="upload_date">$date</div>
+        <div class="uploader_email">$useremail</div>
+    </div>
+    <img src="/static/images/$image" />
+    <div class="comments">
+        <h5 class="comments_title">Comments</h5>
+        $comments
+    </div>
+    <form class="comments_form" role="form" method="post" action="/comment">
+        <div class="form-group">
+            <input name="image" type="hidden"  value="$image">
+            <input name="comment" class="form-control" type="text" placeholder="Enter your comment here">
+            <input class="btn btn-primary" type="submit" value="Submit">
+        </div>
+    </form>
+</div>
