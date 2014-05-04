@@ -1,4 +1,5 @@
 from templating import render
+from users import check_login
 
 
 def render_plain(template_name, template_mapping):

@@ -41,8 +41,22 @@ def add_image(db, filename, useremail):
 def list_only_images(db, n):
     """Return a list of tuples for the first 'n' images in
     order of date.  Tuples should contain (filename, date, useremail)."""
+    query = 'SELECT filename, date, useremail ' \
+            'FROM images ' \
+            'ORDER BY date desc ' \
+            'LIMIT ?'
+    cursor = db.cursor().execute(query, [str(n)])
+    images_tuple = cursor.fetchall()
+    return list(images_tuple)
 
 
 def list_images_for_user(db, useremail):
     """Return a list of tuples for the images belonging to this user.
       Tuples should contain (filename, date, useremail)."""
+    query = 'SELECT filename, date, useremail ' \
+            'FROM images ' \
+            'WHERE useremail IS ?' \
+            'ORDER BY date desc '
+    cursor = db.cursor().execute(query, [useremail])
+    images_tuple = cursor.fetchall()
+    return list(images_tuple)

@@ -6,6 +6,7 @@ MIME_TABLE = {
     '.css': 'text/css',
     '.js': 'application/javascript',
     '.jpg': 'image/jpeg',
+    '.ico': 'image/x-icon',
 }
 
 STATIC_URL_PREFIX = '/static/'
