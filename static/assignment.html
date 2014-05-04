@@ -110,13 +110,26 @@ the real database backend and support submission of comments on images.</p>
 
 <p><a href="level2.html">Requirements</a></p>
 
+  <div class='alert alert-danger'>
+	  <h3>Addendum</h3>
+	  <p>To simplify the implementation of Level 2 I have added the option
+	of an alternate procedure for listing images that does not include 
+	the comments for each image. See the <a href="level2.html">requirements</a>
+	for details.</p>
+	
+	<p>I've also included a new version of <code>level2_functional.py</code>
+		that is a bit more robust in finding the comment forms. The earlier version
+		just found the first form in the page, the new version looks inside
+		the first 'flowtow' div.</p>
+  </div>
+
 <h2>Level 3</h2>
 
 <p>The next phase of development adds the ability to login to the application
 and see a page of your own images.   <strong>If you complete this level successfully
 you will achieve at least a pass grade for the assignment.</strong></p>
 
-<p><a>Requirements (To be confirmed)</a></p>
+<p><a href="level3.html">Requirements</a></p>
 
 
 <h2>Level 4</h2>
@@ -124,7 +137,7 @@ you will achieve at least a pass grade for the assignment.</strong></p>
 <p>This phase adds image file upload to the application.  This is the last level 
 where we provide the full requirements and tests.</p>
 
-<p><a>Requirements (To be confirmed)</a></p>
+<p><a href="level4.html">Requirements</a></p>
 
 
 <h2>Level 5</h2>
@@ -136,9 +149,22 @@ tests that will give you assurance that you have acheived your desired
 functionality.  Functional tests can be optionally implemented using 
 Selenium but should at least be expressed as a user story ('As a user, when I...').</p>
 
-<p>Note that any features that you add at this level <strong>must not cause earlier tests
+<p style='text-decoration: line-through'>Note that any features that you add at this level <strong>must not cause earlier tests
 to fail</strong>. This means you can't change the way that comments are posted etc. but you
 can add some new user input option or new page with a different display.</p>
+
+
+  <div class='alert alert-danger'>
+	  <h3>Addendum</h3>
+<p><strong>Update</strong>: Since changes you make for Level 5 may have a side effect of
+	making earlier tests fail. There will be a separate final submission for Level 4 and 
+	Level 5 projects.  You should first complete all Level 4 requirements <strong>and
+		then submit your work</strong>. You may then go on to modify your code
+		to implement new features and submit that separately.  We will test your
+		Level 4 submission against the automated tests and then evaluate your
+		Level 5 submission for the additional marks. </p>
+		
+	</div>
 
 <h2>Starter Kit</h2>
 
@@ -181,7 +207,7 @@ The Level 1 unit tests should all pass without any additional work; the Level 2
 tests require you to implement the <code>interface.py</code> module.
 </p>
 
-<p>The functional tests (<code>level1_functional.py</code> or <code>level2_functiona.py</code>)  use the 
+<p>The functional tests (<code>level1_functional.py</code> or <code>level2_functional.py</code>)  use the 
 <a href="http://selenium-python.readthedocs.org/en/latest/installation.html" >Python Selenium</a>
 module to start up a web browser (Firefox) and access your pages.  To run the functional
 tests you need to have the main application (<code>main.py</code>) running as well.  As provided, all 
@@ -194,6 +220,25 @@ a check.</p>
 
 <p>The starter pack only contains the Level 1 and Level 2 tests and provided code. More tests and 
 new modules will be provided later for the other levels.</p>
+
+<h2>Level 3 & 4 Supplement</h2>
+
+<p>An additional download is available containing unit and functional tests for level 3 and 
+	the written requirements for level 4.  The file <a href="comp249-flowtow-level3.zip">comp249-flowtow-level3.zip</a> contains the following:</p>
+
+<ul>
+	<li><code>interface_extra.py</code> includes procedure stubs for two new procedures to be added to 
+		<code>interface.py</code>.</li>
+	<li><code>users.py</code> contains procedure stubs for the required code in this new module.</li>
+	<li><code>level2_unit.py</code> contains updated unit tests for Level 2, including a test 
+		for <code>list_only_images</code>.</li>
+	<li><code>level3_unit.py</code> contains unit tests for the procedures required at Level 3
+		in the <code>users</code> and <code>interface</code> modules.</li>
+	<li><code>level3_functional.py</code> contains functional tests using Selenium to test the 
+		Level 3 functional requirements.</li>
+</ul>
+
+<p>The zip file also contains an updated copy of this document and the level 3 and 4 requirements.</p>
 
 <h2>Submission</h2>
 
@@ -217,10 +262,10 @@ provide support if you are having difficulty and will advise you about resubmiss
 
 <h2>Grading and Passing the Assignment</h2>
 
-  <p>This assignment is worth 15% of the final marks for COMP249.  The marks for the 
-  	first four levels will be out of 10 and will be entirely based on achieving the stated functional
+  <p>This assignment is worth 20% of the final marks for COMP249.  The marks for the 
+  	first four levels will be out of 12 and will be entirely based on achieving the stated functional
   	and unit-test requirements and passing the automated tests. 
-  	The remaining 5 marks will be based on your completion of additional work
+  	The remaining 8 marks will be based on your completion of additional work
   	for Level 5 and on the quality of the code and documentation that you
   	provide.   	 The breakdown
   	of marks for the first four levels is as follows:</p>
@@ -231,10 +276,10 @@ provide support if you are having difficulty and will advise you about resubmiss
   		<tr><th>Level</th><th>Functional Tests</th><th>Unit Tests</th><th>Cumulative Marks</th></tr>
   	</thead>
   	<tbody>
-  		<tr><th>1</th><td>1</td><td>0</td><td>1</td></tr>
-  		<tr><th>2</th><td>1</td><td>1</td><td>4</td></tr>
-  		<tr class='active'><th>3 (Pass)</th><td>2</td><td>2</td><td>8</td></tr>
-  		<tr><th>4</th><td>1</td><td>1</td><td>10</td></tr>
+  		<tr><th>1</th><td>2</td><td>0</td><td>2</td></tr>
+  		<tr><th>2</th><td>1</td><td>3</td><td>6</td></tr>
+  		<tr class='active'><th>3 (Pass)</th><td>2</td><td>2</td><td>10</td></tr>
+  		<tr><th>4</th><td>1</td><td>1</td><td>12</td></tr>
   	</tbody>
   </table>
 
@@ -243,14 +288,14 @@ provide support if you are having difficulty and will advise you about resubmiss
    pass the assignment you must meet all of the requirements for
    the first three levels.</strong>  This means that if you are able to
    pass all of the automated tests for these levels, you will get a 
-   mark of 8 or more and pass the assignment. </p>
+   mark of 10 or more and pass the assignment. </p>
 
   <p>If you are not able to pass the first time you submit your work, you may
    resubmit after getting some advice from Steve Cassidy.  <strong>However, you
    must submit on time to be eligible for re-submission.</strong></p>
 
    <p>Marking criteria for Level 5 will decide whether you get a Credit
-   	or Distinction/High Distinction for the assignment.  The criteria are: </p>
+   	or Distinction/High Distinction for the assignment and count for the final 8 marks. The criteria are: </p>
 
    <dl>
     <dt>Features</dt>

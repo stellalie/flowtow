@@ -2,6 +2,9 @@
 Created on Mar 3, 2014
 
 @author: Steve Cassidy
+
+Version 2: adds test for list_only_images, a simplified version of list_images
+
 '''
 import unittest
 import datetime
@@ -114,9 +117,34 @@ class LevelAUnitTests(unittest.TestCase):
         # now check the comments, should all be the same except the last one
         for image in image_list[:3]:
             self.assertListEqual(self.comments, image[3])
-
-        self.assertEqual([], image_list[3][3], 'comment on last image should be empty')
         
+        self.assertEqual([], image_list[3][3], 'comment on last image should be empty')
+       
+
+    def test_list_only_images(self):
+        """Test that list_only_images returns the right list of images
+        Similar to list_images but does not include the comments.
+        """
+        
+        # get the four most recent image entries
+        image_list = interface.list_only_images(self.db, 4)
+        
+        self.assertEqual(4, len(image_list))
+        # and all entries are three elements long
+        self.assertTrue(all([len(i) == 3 for i in image_list]))
+        
+        refimages = self.images
+        
+        # check that the images are in the right order
+        self.assertListEqual([img[0] for img in refimages], [img[0] for img in image_list])
+        
+        # and the dates are right
+        self.assertListEqual([img[1] for img in refimages], [img[1] for img in image_list])
+        
+        # and the owners
+        self.assertListEqual([img[2] for img in refimages], [img[2] for img in image_list])
+
+
     
     def test_add_image(self):
         """Test that add_image updates the database properly"""

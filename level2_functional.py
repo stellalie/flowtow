@@ -32,8 +32,10 @@ image with the placeholder text "Enter your comment here" and a button labelled 
         driver = self.driver
         driver.get(self.base_url)
         
+        div = driver.find_elements_by_class_name('flowtow')[0]
+        
         # find the first form
-        forms = driver.find_elements_by_tag_name('form')
+        forms = div.find_elements_by_tag_name('form')
         myform = forms[0]
         
         # find the text input
@@ -64,10 +66,12 @@ image with the placeholder text "Enter your comment here" and a button labelled 
         driver = self.driver
         driver.get(self.base_url)
         
+        div = driver.find_elements_by_class_name('flowtow')[0]
+        
         # find the first form
-        forms = driver.find_elements_by_tag_name('form')
+        forms = div.find_elements_by_tag_name('form')
         myform = forms[0]
-
+        
         # find the text input
         textbox = myform.find_element_by_name("comment")
         

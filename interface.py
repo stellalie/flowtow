@@ -36,3 +36,13 @@ def add_image(db, filename, useremail):
     now = datetime.date.today()
     db.cursor().execute('INSERT INTO images VALUES (?, ?, ?)', [filename, now, useremail])
     db.commit()
+
+
+def list_only_images(db, n):
+    """Return a list of tuples for the first 'n' images in
+    order of date.  Tuples should contain (filename, date, useremail)."""
+
+
+def list_images_for_user(db, useremail):
+    """Return a list of tuples for the images belonging to this user.
+      Tuples should contain (filename, date, useremail)."""

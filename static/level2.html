@@ -7,7 +7,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>FlowTow Requirements: Level 1</title>
+    <title>FlowTow Requirements: Level 2</title>
 
     <!-- Bootstrap core CSS -->
     <link href="/static/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -97,7 +97,8 @@ image.
 		a number  <code>n</code> and returns a list of 
 	the most recent <code>n</code> images that have been uploaded along with their details.  The return
 	value will be a list of tuples with one tuple per image, each tuple will contain four
-	elements: <code>(filename, date, useremail, comments)</code>.  <code>filename</code> is the path to the image relative to 
+	elements: <code>(filename, date, useremail, comments)</code>.  <code>filename</code> is the path 
+	to the image relative to 
 	the default image directory, <code>date</code> is a date string in the format YYYY-MM-DD,
 	<code>useremail</code> is the email
 	address of the owner
@@ -111,7 +112,29 @@ image.
 	</li>
  </ol>
  
-	<p>The Starter Kit includes modules for page templating and creating and interfacing to
+  <div class='alert alert-danger'>
+	  <h3>Addendum</h3>
+ 	<p>As an option to simplify the implementation you may choose to implement the following
+		procedure instead of <code>list_images</code>:</p>
+	
+	<ol>
+		<li>There is a procedure <code>list_only_images</code> that takes a two arguments, 
+		a database connection and a number  <code>n</code> and returns a list of 
+		the most recent <code>n</code> images that have been uploaded along with their details.  The return
+		value will be a list of tuples with one tuple per image, each tuple will contain four
+		elements: <code>(filename, date, useremail)</code>.  <code>filename</code> is the path 
+		to the image relative to the default image directory, <code>date</code> is a 
+		date string in the format YYYY-MM-DD, <code>useremail</code> is the email address of the owner
+		of the image. The images will be returned in reverse order of their date, 
+		with the newest image first.</li>
+	</ol>
+	
+	<p>Your code should implement one of these two procedures. Each comes with a unit test
+		(see the amended <code>level2_unit.py</code>) 
+	
+  </div>
+ 
+  <p>The Starter Kit includes modules for page templating and creating and interfacing to
 		the database. These modules are <a href="modules.html">described here</a>. </p>
 	
 
