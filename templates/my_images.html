@@ -1,0 +1,11 @@
+<h2>Upload Image</h2>
+<div class="upload_area">
+    <form id="uploadform" method="post" action="/upload" enctype="multipart/form-data">
+        <input id="upload_image" type="file" name="image"/>
+        <input id="upload_submit" class="btn btn-primary" type='submit' value='Upload'>
+    </form>
+</div>
+<h2>My Images</h2>
+<div class="image_list">
+    $image_list_for_user
+</div>

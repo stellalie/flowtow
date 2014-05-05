@@ -8,10 +8,21 @@ h1, h2 {
 .content {
     margin-top: 80px;
 }
-.content .image_list {
+.content .image_list,
+.content .upload_area {
     max-width: 465px;
     margin: 0 auto;
+    overflow: hidden;
 }
+/* Upload Box */
+.content .upload_area {
+    background: #f5f5f5;
+    padding: 10px;
+}
+.content .upload_area #upload_image { float: left; margin-top: 5px; }
+.content .upload_area #upload_submit { float: right; }
+
+/* Image List */
 .content .image_item {
     background: #f5f5f5;
     padding: 10px;
